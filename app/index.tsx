@@ -8,16 +8,16 @@ export default function HomeScreen() {
       <Text className="text-6xl font-robotoBold text-slate-950">
         Jaime app 👨‍🦳
       </Text>
-      <View className="flex flex-row gap-5 pt-20">
+      <View className="flex flex-col gap-5 pt-20">
         <Link
           href="/imjaime"
-          className="text-center bg-blue-950 text-white text-3xl p-12 mt-5 rounded-xl border-4 border-blue-900"
+          className="text-center bg-blue-950 text-white text-3xl p-5 rounded-xl border-4 border-blue-900"
         >
           Soy Jaime
         </Link>
         <Link
           href="/imnotjaime"
-          className="text-center bg-blue-950 text-white text-3xl p-12 mt-5 rounded-xl border-4 border-blue-900"
+          className="text-center bg-blue-950 text-white text-3xl p-5 rounded-xl border-4 border-blue-900"
         >
           No soy Jaime
         </Link>

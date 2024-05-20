@@ -11,7 +11,7 @@ export default function ImJaime() {
       <Text className="text-2xl text-slate-950 mb-10">
         Elige una notificaciones 🔔
       </Text>
-      <View className="flex flex-col">
+      <View>
         <ButtonJaime
           label="🚽 Baño"
           isPressed={() => {
@@ -42,8 +42,10 @@ export default function ImJaime() {
             });
           }}
         />
-        <ButtonJaime label="✔️ Sí" />
-        <ButtonJaime label="❌ No" />
+        <View className="flex flex-row justify-between">
+          <ButtonJaime label="✔️ Sí" />
+          <ButtonJaime label="❌ No" />
+        </View>
       </View>
     </View>
   );
