@@ -1,0 +1,16 @@
+import { Pressable, Text } from 'react-native';
+import { styled } from 'nativewind';
+
+interface ButtonJaimeProps {
+  label: string;
+}
+
+const CustomButton = styled(Pressable);
+
+export default function ButtonJaime({ label }: ButtonJaimeProps) {
+  return (
+    <CustomButton className="bg-blue-950 p-10 rounded-xl border-4 border-blue-900 mb-5">
+      <Text className="text-center text-white text-3xl">{label}</Text>
+    </CustomButton>
+  );
+}

@@ -1,4 +1,4 @@
-import { Button, StatusBar, Text, View } from 'react-native';
+import { StatusBar, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 
 export default function HomeScreen() {
@@ -6,7 +6,7 @@ export default function HomeScreen() {
     <View className="h-full flex pt-40 bg-slate-200 px-5">
       <Text className="text-4xl text-slate-950 mb-5">Bienvenido a</Text>
       <Text className="text-6xl font-robotoBold text-slate-950">
-        Jaime app 👋
+        Jaime app 👨‍🦳
       </Text>
       <View className="flex flex-row gap-5 pt-20">
         <Link

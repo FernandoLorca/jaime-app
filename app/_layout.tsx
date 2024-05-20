@@ -25,15 +25,9 @@ export default function RootLayout() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="imjaime"
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="imjaime" />
 
-      <Stack.Screen
-        name="imnotjaime"
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="imnotjaime" />
     </Stack>
   );
 }
