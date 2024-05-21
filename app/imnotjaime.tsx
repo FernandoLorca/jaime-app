@@ -44,9 +44,9 @@ export default function ImNotJaime() {
             <Text className="text-7xl pt-5">{label}</Text>
           </View>
           <View className="mt-5">
-            <Button
-              title="Limpiar notificación"
-              onPress={() => {
+            <ButtonJaime
+              label="Limpiar notificación"
+              isPressed={() => {
                 setJaimeState({
                   notificationState: false,
                   notificationLabel: '',
