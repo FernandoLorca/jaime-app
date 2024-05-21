@@ -1,12 +1,18 @@
 import { Text, View } from 'react-native';
+import ToastManager, { Toast } from 'toastify-react-native';
 import { useJaimeNotificationState } from '@/store/JaimeNotificationState';
 import ButtonJaime from '@/components/ButtonJaime';
 
 export default function ImJaime() {
   const setJaimeState = useJaimeNotificationState(state => state.setJaimeState);
 
+  const showNotification = () => {
+    Toast.success('Notificación enviada');
+  };
+
   return (
     <View className="h-full flex pt-20 bg-slate-200 px-5">
+      <ToastManager />
       <Text className="font-bold text-4xl text-slate-950">Hola Jaime 👋</Text>
       <Text className="text-2xl text-slate-950 mb-10">
         Elige una notificaciones 🔔
@@ -20,6 +26,7 @@ export default function ImJaime() {
               notificationLabel: 'Baño',
               notificationMessage: 'Necesito ir al baño',
             });
+            showNotification();
           }}
         />
         <ButtonJaime
@@ -30,6 +37,7 @@ export default function ImJaime() {
               notificationLabel: 'Hambre',
               notificationMessage: 'Tengo hambre',
             });
+            showNotification();
           }}
         />
         <ButtonJaime
@@ -40,6 +48,7 @@ export default function ImJaime() {
               notificationLabel: 'Sed',
               notificationMessage: 'Tengo sed',
             });
+            showNotification();
           }}
         />
         <View className="flex flex-row justify-between">
