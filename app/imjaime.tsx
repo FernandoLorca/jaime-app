@@ -15,9 +15,10 @@ export default function ImJaime() {
       <ToastManager />
       <Text className="font-bold text-4xl text-slate-950">Hola Jaime 👋</Text>
       <Text className="text-2xl text-slate-950 mb-10">
-        Elige una notificaciones 🔔
+        Envia una notificación 🔔
       </Text>
       <View>
+        <Text className="pb-2 text-lg">Notificaciones:</Text>
         <ButtonJaime
           label="🚽 Baño"
           isPressed={() => {
@@ -51,6 +52,7 @@ export default function ImJaime() {
             showNotification();
           }}
         />
+        <Text className="pb-2 text-lg">Respuesta:</Text>
         <View className="flex flex-row justify-between">
           <ButtonJaime label="✔️ Sí" />
           <ButtonJaime label="❌ No" />
