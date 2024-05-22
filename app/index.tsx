@@ -1,7 +1,10 @@
 import { StatusBar, Text, View } from 'react-native';
 import { Link } from 'expo-router';
+import registerNNPushToken from 'native-notify';
 
 export default function HomeScreen() {
+  registerNNPushToken(21410, 'SX5pafAHTD6VviI8CUf71C');
+
   return (
     <View className="h-full flex pt-40 bg-slate-200 px-5">
       <Text className="text-4xl text-slate-950 mb-5">Bienvenido a</Text>

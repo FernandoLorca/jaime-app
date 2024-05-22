@@ -6,14 +6,15 @@ import { useJaimeNotificationState } from '@/store/JaimeNotificationState';
 import ButtonJaime from '@/components/ButtonJaime';
 
 export default function ImJaime() {
+  const jaimeState = useJaimeNotificationState(state => state.jaimeState);
   const setJaimeState = useJaimeNotificationState(state => state.setJaimeState);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
-  const showNotification = () => {
+  function showNotification() {
     Toast.success('Notificación enviada');
-  };
+  }
 
-  const playYesSound = async () => {
+  async function playYesSound() {
     try {
       const { sound } = await Audio.Sound.createAsync(
         require('../assets/audio/yes.mp3')
@@ -24,9 +25,9 @@ export default function ImJaime() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  const playNoSound = async () => {
+  async function playNoSound() {
     try {
       const { sound } = await Audio.Sound.createAsync(
         require('../assets/audio/no.mp3')
@@ -37,7 +38,30 @@ export default function ImJaime() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
+
+  async function pushNotification(
+    titleNotification: string,
+    messageNotification: string
+  ) {
+    try {
+      await fetch('https://app.nativenotify.com/api/notification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          appId: 21410,
+          appToken: 'SX5pafAHTD6VviI8CUf71C',
+          title: titleNotification,
+          body: messageNotification,
+          dateSent: new Date(),
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <View className="h-full flex pt-20 bg-slate-200 px-5">
@@ -56,6 +80,10 @@ export default function ImJaime() {
               notificationLabel: 'Baño',
               notificationMessage: 'Necesito ir al baño',
             });
+            pushNotification(
+              jaimeState.notificationLabel,
+              jaimeState.notificationMessage
+            );
             showNotification();
           }}
         />
@@ -67,6 +95,10 @@ export default function ImJaime() {
               notificationLabel: 'Hambre',
               notificationMessage: 'Tengo hambre',
             });
+            pushNotification(
+              jaimeState.notificationLabel,
+              jaimeState.notificationMessage
+            );
             showNotification();
           }}
         />
@@ -78,6 +110,10 @@ export default function ImJaime() {
               notificationLabel: 'Sed',
               notificationMessage: 'Tengo sed',
             });
+            pushNotification(
+              jaimeState.notificationLabel,
+              jaimeState.notificationMessage
+            );
             showNotification();
           }}
         />
