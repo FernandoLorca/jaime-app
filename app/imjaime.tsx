@@ -4,9 +4,9 @@ import ToastManager, { Toast } from 'toastify-react-native';
 import { Audio } from 'expo-av';
 import { useJaimeNotificationState } from '@/store/JaimeNotificationState';
 import ButtonJaime from '@/components/ButtonJaime';
+import YesAndNoButtons from '@/components/YesAndNoButtons';
 
 export default function ImJaime() {
-  const jaimeState = useJaimeNotificationState(state => state.jaimeState);
   const setJaimeState = useJaimeNotificationState(state => state.setJaimeState);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
@@ -63,6 +63,16 @@ export default function ImJaime() {
     }
   }
 
+  async function isPressedHandler(label: string, message: string) {
+    setJaimeState({
+      notificationState: true,
+      notificationLabel: label,
+      notificationMessage: message,
+    });
+    await pushNotification(label, message);
+    showNotification();
+  }
+
   return (
     <View className="h-full flex pt-20 bg-slate-200 px-5">
       <ToastManager />
@@ -74,64 +84,41 @@ export default function ImJaime() {
         <Text className="pb-2 text-lg">Notificaciones:</Text>
         <ButtonJaime
           label="🚽 Baño"
-          isPressed={() => {
-            setJaimeState({
-              notificationState: true,
-              notificationLabel: 'Baño',
-              notificationMessage: 'Necesito ir al baño',
-            });
-            pushNotification(
-              jaimeState.notificationLabel,
-              jaimeState.notificationMessage
-            );
-            showNotification();
+          isPressed={async () => {
+            await isPressedHandler('Baño', 'Necesito ir al baño');
           }}
         />
         <ButtonJaime
           label="🥩 Hambre"
-          isPressed={() => {
-            setJaimeState({
-              notificationState: true,
-              notificationLabel: 'Hambre',
-              notificationMessage: 'Tengo hambre',
-            });
-            pushNotification(
-              jaimeState.notificationLabel,
-              jaimeState.notificationMessage
-            );
-            showNotification();
+          isPressed={async () => {
+            await isPressedHandler('Hambre', 'Tengo hambre');
           }}
         />
         <ButtonJaime
           label="🥛 Sed"
-          isPressed={() => {
-            setJaimeState({
-              notificationState: true,
-              notificationLabel: 'Sed',
-              notificationMessage: 'Tengo sed',
-            });
-            pushNotification(
-              jaimeState.notificationLabel,
-              jaimeState.notificationMessage
-            );
-            showNotification();
+          isPressed={async () => {
+            await isPressedHandler('Sed', 'Tengo sed');
           }}
         />
         <Text className="pb-2 text-lg">Respuesta:</Text>
-        <View className="flex flex-row justify-between">
-          <ButtonJaime
-            label="✔️ Sí"
-            isPressed={() => {
-              playYesSound();
-            }}
-          />
-          <ButtonJaime
-            label="❌ No"
-            isPressed={() => {
-              playNoSound();
-            }}
-          />
-        </View>
+        <YesAndNoButtons
+          yesAndNoButtons={
+            <>
+              <ButtonJaime
+                label="✔️ Sí"
+                isPressed={() => {
+                  playYesSound();
+                }}
+              />
+              <ButtonJaime
+                label="❌ No"
+                isPressed={() => {
+                  playNoSound();
+                }}
+              />
+            </>
+          }
+        />
       </View>
     </View>
   );
